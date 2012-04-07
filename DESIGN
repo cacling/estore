@@ -1,0 +1,19 @@
+A Customer can be associated with many Shopping Carts.
+A Preferred Customer is a Subtype of Customer.
+A Preferred Customer can be associated with many Credit Cards.
+A Credit Card can be associated with one, and only one, Preferred Customer.
+A Shopping Cart can be associated with one, and only one, Credit Card.
+A Shopping Cart can be associated with many Items to Purchase.
+An Item to Purchase can be associated with one and only one Product.
+A Product can be associated with many Items to Purchase.
+
+
+Domain is a body of business expertise. For example, you might have a domain of all business expertise about customers -- who is responsible for them, what prices they should get, how to contact them, etc.
+Entity is an object which has a distinct identity. For example, a Customer entity has a distinct identity with an ID.
+Value Object is an object which has no distinct identity. For example, the color of a product does not have a distinct identity if you think the "blue" of two blue shirts are the same thing.
+Aggregate is a higher level entity which could be viewed from the outside and in turn links you to other entities and value objects. For example, Customer might be an aggregate, so you can view Customer from Orders, Invoices, etc., but a Customer's addresses and phone numbers should only be retrieved by going through Customer first.
+Infrastructure is where the lower level infrastructure of your application is available. For example, it would provide you with the ability to access databases, remote web services, etc.
+Factory is used to create Entities. For example, a Factory might create an Invoice entity (and its related entities and value objects) from an Order entity.
+Repository is used to retrieve, store, and delete Entities from the database. For example, a Repository might help you store the Invoice (and related entities) your Factory created and then bring them back from the database.
+Service is business logic that involves several domain Entities or Aggregates. For example, creating Invoices from Orders is a service.
+

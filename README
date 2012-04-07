@@ -1,0 +1,101 @@
+//TODO List
+JPA with hibernate
+development with h2
+init data with yaml http://en.wikipedia.org/wiki/YAML
+
+Methods
+One of the key aspects of REST is using the HTTP Verbs to implement the standard Create-Retrieve-Update-Delete (CRUD) database semantics. The primary ones are:
+
+POST
+Create a resource within a given collection
+GET
+Retrieve a resource
+PUT
+Update a resource
+DELETE
+Delete a resource
+Most browsers do not currently support PUT and DELETE (HTML forms only allow "get" and "post", links are always "get"). The other methods can be emulated by providing a "method" parameter with a value of "PUT" and "DELETE", respectively.
+
+Routing
+The principal unit of operation is the "collection", which typically corresponds to a database table or (in Rails) an ActiveRecord class. For a collection named "people", the primary routes would be:
+
+Operate on the Collection
+GET /people
+return a list of all records
+GET /people/new
+return a form for creating a new record
+POST /people
+submit fields for creating a new record
+Operate on a Record
+GET /people/1
+return the first record
+DELETE /people/1
+destroy the first record
+POST /people/1?_method=DELETE
+alias for DELETE, to compensate for browser limitations
+GET /people/1/edit
+return a form to edit the first record
+PUT /people/1
+submit fields for updating the first record
+POST /people/1?_method=PUT
+alias for PUT, to compensate for browser limitations
+Follow a Relationship
+GET /people/1/phones
+return the collection of phone numbers associated with the first person
+GET /people/1/phones/23
+return the phone number with id #23 associated with the first person
+GET /people/1/phones/new
+return a form for creating a new phone number for the first person
+POST /people/1/phones/
+submit fields for creating a new phone number for the first person
+Invoke Custom Actions
+It isn't always possible to map everything into CRUD. Thus, there is also a syntax for specifying custom actions:
+
+POST /people/1/promote
+run the "promote" action against the first record
+These should be used sparingly, as they are unlikely to be supported by most clients.
+
+File Formats
+Data types are extremely important in REST. While it is ideal to specify the appropriate MIME type as an HTTP header, developers are encouraged to follow Rails in allowing extension-based typing, e.g.:
+
+HTML
+GET /people/1
+return the first record in HTML format
+GET /people/1.html
+return the first record in HTML format
+XML
+GET /people/1.xml
+return the first record in XML format
+JSON
+GET /people/1.json
+return the first record in JSON format
+While the JSON mapping should be trivially obvious, the best practice for XML is to:
+
+use the column name as the element name
+include an appropriate "type" field
+See the Highrise reference for an example of how this works in practice.
+
+Response Codes
+Another important aspect of REST is returning the appropriate HTTP Response Codes. Some common ones are:
+
+Successful
+200 OK
+The request has succeeded.
+201 Created
+The request has been fulfilled and resulted in a new resource being created. The newly created resource can be referenced by the URI(s) returned in the entity of the response, with the most specific URI for the resource given by a Location header field.
+204 No Content
+The server has fulfilled the request but does not need to return an entity-body, and might want to return updated metainformation.
+Redirection
+303 See Other
+The response to the request can be found under a different URI and SHOULD be retrieved using a GET method on that resource. This method exists primarily to allow the output of a POST-activated script to redirect the user agent to a selected resource.
+Client Error
+400 Bad Request
+The request could not be understood by the server due to malformed syntax.
+401 Unauthorized
+The request requires user authentication. The response MUST include a WWW-Authenticate header field (14.47) containing a challenge applicable to the requested resource.
+404 Not Found
+The requested resource could not be found(section 10.4.5).
+405 Method Not Allowed
+The method specified in the Request-Line is not allowed for the resource identified by the Request-URI. The response MUST include an Allow header containing a list of valid methods for the requested resource.
+422 Unprocessable Entity
+The server understands the media type of the request entity, but was unable to process the contained instructions.
