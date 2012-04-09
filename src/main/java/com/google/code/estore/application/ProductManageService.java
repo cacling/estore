@@ -12,26 +12,12 @@ import com.google.code.estore.domain.shared.RepositoryFactory;
 @Component
 public class ProductManageService {
 	
-	
-	//bestPrice
-	
-	//bestSelling 
-	
-	//new product
-	
-	//guess what you like
-	
-	
-	public List<Product> getBigDiscountProducts(int amount) {
-		return null;
+	public List<Product> get4BestSellingProducts() {
+		int amount = 4;
+		return RepositoryFactory.getProductRepository().findTopXOrderedProducts(amount);
 	}
 	
-	
-	public List<Product> getBestSelling4Products() {
-		return null;
-	}
-	
-	public List<Product> getLatest4Products() {
+	public List<Product> get4LatestProducts() {
 		int amount = 4;
 		return RepositoryFactory.getProductRepository().findTopXLastCreatedProducts(amount);
 	}
@@ -39,5 +25,15 @@ public class ProductManageService {
 	public List<Product> getCustomerFavourProducts(int amount, Customer customer) {
 		return null;
 	}
-
+	
+	public List<Product> get4BestPriceProducts() {
+		int amount = 4;
+		return RepositoryFactory.getProductRepository().findTopXDiscountMostProducts(amount);
+	}
+	
+	public List<Product> get10RecommendProducts() {
+		int amount = 10;
+		return RepositoryFactory.getProductRepository().findTopXRecommendProducts(amount);
+	}
+	
 }

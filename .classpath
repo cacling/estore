@@ -79,4 +79,5 @@
       <attribute value="jar:file:/C:/Users/Gavin/.m2/repository/org/hibernate/hibernate-commons-annotations/3.2.0.Final/hibernate-commons-annotations-3.2.0.Final-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/5.1.19/mysql-connector-java-5.1.19.jar"/>
 </classpath>

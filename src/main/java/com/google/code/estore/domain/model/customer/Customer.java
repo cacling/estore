@@ -3,7 +3,9 @@ package com.google.code.estore.domain.model.customer;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,13 +36,13 @@ public class Customer implements Entity<Customer>{
 	@Column(unique = true)
 	private String email;
 	
-	@OneToMany(mappedBy ="customer") 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy ="customer") 
 	private List<Account> accounts;
 	
-	@OneToMany(mappedBy ="customer") 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy ="customer") 
 	private List<Address> addresses;
 	
-	@OneToMany(mappedBy ="customer") 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy ="customer") 
 	private List<Order> orders;
 	
 	@OneToOne
@@ -70,17 +72,17 @@ public class Customer implements Entity<Customer>{
 		this.name = name;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
 	public boolean sameIdentityAs(Customer other) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 	
-	public String getPassword() {
-		return password;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	//Business Methods ================================================
@@ -127,18 +129,18 @@ public class Customer implements Entity<Customer>{
 		this.addresses.add(address);
 	}
 	
-	public void setEmail(String email) {
+	public String getEmail() {
 		if(email == null){
 			email = name + "@gmail.com";
 		}
-		this.email = email;
+		return email;
 	}
 	
-	public void setPassword(String password) {
+	public String getPassword() {
 		if(password == null){
 			password = name;
 		}
-		this.password = password;
+		return password;
 	}
 	
 	public Customer save() {

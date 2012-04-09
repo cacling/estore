@@ -6,7 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.commons.lang.ArrayUtils;
+
 import com.google.code.estore.domain.model.product.Product;
+import com.google.code.estore.infrastructure.persistence.hibernate.util.JpaResultUtil;
 
 public class ProductRepositoryJpaImpl implements ProductRepositoryJpaCustom{
 	
@@ -28,4 +31,16 @@ public class ProductRepositoryJpaImpl implements ProductRepositoryJpaCustom{
 		return query.getResultList();
 	}
 
+	public List<Product> findTopXOrderedProducts(int x) {
+		Query query = em.createQuery("select p,sum(oi.quantity) from Order o, OrderItem oi, Product p where oi.product=p.id and oi.order=o.id group by p order by sum(oi.quantity) desc");
+		query.setMaxResults(x);
+		List results = query.getResultList();
+		return JpaResultUtil.getExtractedResults(results, 0);
+	}
+
+	public List<Product> findTopXDiscountMostProducts(int x) {
+		Query query = em.createQuery("from Product p order by ((p.unitPrice-p.salePrice)/p.unitPrice) desc");
+		query.setMaxResults(x);
+		return query.getResultList();
+	}
 }

@@ -19,24 +19,24 @@ import com.google.code.estore.interfaces.facade.dto.DisplayItemDTO;
 public class HomepageController {
 	
 	
-	//big discount
-	
-	//hot sales
-	
-	//new product
-	
-	//guess what you like
-	
 	@Autowired
 	private ProductManageService productManageService;
 	
-	@RequestMapping("/displayArea")  
+	@RequestMapping("/index")  
     public String displayArea(PrintWriter out,Map model){  
-		List<Product> products = productManageService.getLatest4Products();
-		List<DisplayItemDTO> i = DisplayAreaDTOAssembler.toDisplayItemDTOs(products);
-		System.out.println(i.get(0).getName());
-		
-	    model.put("displayItems", DisplayAreaDTOAssembler.toDisplayItemDTOs(products));  
+		List<Product> newProducts = productManageService.get4LatestProducts();
+	    model.put("newProducts", DisplayAreaDTOAssembler.toDisplayItemDTOs(newProducts));  
+	    
+	    List<Product> bestSellingProducts = productManageService.get4BestSellingProducts();
+	    model.put("bestSellingProducts", DisplayAreaDTOAssembler.toDisplayItemDTOs(bestSellingProducts));
+	    
+	    
+	    List<Product> bestPriceProducts = productManageService.get4BestPriceProducts();
+	    model.put("bestPriceProducts", DisplayAreaDTOAssembler.toDisplayItemDTOs(bestPriceProducts));
+	    
+	    List<Product> recommendProducts = productManageService.get10RecommendProducts();
+	    model.put("recommendProducts", DisplayAreaDTOAssembler.toDisplayItemDTOs(recommendProducts));
+	    
         return "index";  
     }  
 	

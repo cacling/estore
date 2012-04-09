@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.code.estore.domain.model.customer.Account;
@@ -25,6 +26,7 @@ import com.google.code.estore.domain.shared.util.DateUtil;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:/estore-infrastructure-persistence.xml",
 		"classpath:/applicationContext-test.xml" })
+@TransactionConfiguration
 @Transactional
 public class CustomerRepositoryJpaTest 
 		 {

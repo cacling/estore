@@ -9,5 +9,9 @@ public interface ProductRepositoryJpaCustom {
 	public List<Product> myCustomBatchOperation(String xxxx);
 	
 	public List<Product> findTopXLastCreatedProducts(int x);
+	
+	public List<Product> findTopXOrderedProducts(int x);
+	
+	public List<Product> findTopXDiscountMostProducts(int x);
 
 }

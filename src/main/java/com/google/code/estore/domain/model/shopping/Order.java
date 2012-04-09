@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class Order implements Entity<Order>{
 	
 	private Double totalMoney;
 	
-	@OneToMany(mappedBy ="order")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy ="order")
 	private List<OrderItem> orderItems;
 	
 	@ManyToOne

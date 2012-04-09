@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.google.code.estore.domain.model.shopping.Order;
 
-public interface OrderRepositoryJpa  extends CrudRepository<Order, Long>{
+public interface OrderRepositoryJpa  extends CrudRepository<Order, Long>, OrderRepositoryJpaCustom{
 	
 	
 	

@@ -1,5 +1,6 @@
 package com.google.code.estore.domain.model.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,28 @@ public class ProductRepository  {
 	public List<Product> findTopXLastCreatedProducts(int x){
 		return productJpaRepository.findTopXLastCreatedProducts(x);
 	}
+	
+	public List<Product> findTopXOrderedProducts(int x){
+		return productJpaRepository.findTopXOrderedProducts(x);
+	}
+	
+	public List<Product> findTopXDiscountMostProducts(int x){
+		return productJpaRepository.findTopXDiscountMostProducts(x);
+	}
+	
+	//TODO temp,find with customer's hobbie
+	public List<Product> findTopXRecommendProducts(int x){
+		Iterable<Product> products = productJpaRepository.findAll();
+		List<Product> recommendProducts = new ArrayList<Product>();
+			for (Product product : products) {
+				if (x-- > 0) {
+					recommendProducts.add(product);
+				}
+			}
+		return recommendProducts;
+	}
+	
+	
+	
 	
 }

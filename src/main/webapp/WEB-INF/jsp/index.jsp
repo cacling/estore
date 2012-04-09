@@ -60,16 +60,16 @@
 	    		Best Selling Products
 	    	</div>
 	    	<div class="items">
-		    	<c:forEach items="${displayItems}" var="displayItem">
+		    	<c:forEach items="${bestSellingProducts}" var="bestSellingProduct">
 					<div class="item">
 						<div class="image">
-							<img alt="" src="i/sample/${displayItem.image}" width="130px" height="130px">
+							<img alt="" src="i/sample/${bestSellingProduct.image}" width="130px" height="130px">
 						</div>
 						<div class="itemname">
-							${displayItem.name} 
+							${bestSellingProduct.name} 
 						</div>
 						<div class="itemprice">
-							$ ${displayItem.salePrice} (${displayItem.discount} off)
+							$ ${bestSellingProduct.salePrice} (${bestSellingProduct.discount} off)
 						</div>
 						<div class="itemToCart">
 							<img alt="" src="i/addToCart.jpg">
@@ -85,16 +85,16 @@
 	    		Best Price Products
 	    	</div>
 	    	<div class="items">
-		    	<c:forEach items="${displayItems}" var="displayItem">
+		    	<c:forEach items="${bestPriceProducts}" var="bestPriceProduct">
 					<div class="item">
 						<div class="image">
-							<img alt="" src="i/sample/${displayItem.image}" width="130px" height="130px">
+							<img alt="" src="i/sample/${bestPriceProduct.image}" width="130px" height="130px">
 						</div>
 						<div class="itemname">
-							${displayItem.name} 
+							${bestPriceProduct.name} 
 						</div>
 						<div class="itemprice">
-							$ ${displayItem.salePrice} (${displayItem.discount} off)
+							$ ${bestPriceProduct.salePrice} (${bestPriceProduct.discount} off)
 						</div>
 						<div class="itemToCart">
 							<img alt="" src="i/addToCart.jpg">
@@ -109,16 +109,16 @@
 	    		New Products
 	    	</div>
 	    	<div class="items">
-		    	<c:forEach items="${displayItems}" var="displayItem">
+		    	<c:forEach items="${newProducts}" var="newProduct">
 					<div class="item">
 						<div class="image">
-							<img alt="" src="i/sample/${displayItem.image}" width="130px" height="130px">
+							<img alt="" src="i/sample/${newProduct.image}" width="130px" height="130px">
 						</div>
 						<div class="itemname">
-							${displayItem.name} 
+							${newProduct.name} 
 						</div>
 						<div class="itemprice">
-							$ ${displayItem.salePrice} (${displayItem.discount} off)
+							$ ${newProduct.salePrice} (${newProduct.discount} off)
 						</div>
 						<div class="itemToCart">
 							<img alt="" src="i/addToCart.jpg">
@@ -133,16 +133,16 @@
 	    <div id="recommendArea">
 	    	<div class="title">Recommendations</div>
 	    	<div class="items">
-		    	<c:forEach items="${displayItems}" var="displayItem">
+		    	<c:forEach items="${recommendProducts}" var="recommendProduct">
 					<div class="item">
 						<div class="image">
-							<img alt="" src="i/sample/${displayItem.image}" width="55px" >
+							<img alt="" src="i/sample/${recommendProduct.image}" width="55px" >
 						</div>
 						<div class="itemname">
-							${displayItem.name} 
+							${recommendProduct.name} 
 						</div>
 						<div class="itemprice">
-							$ ${displayItem.salePrice} (${displayItem.discount} off)
+							$ ${recommendProduct.salePrice} (${recommendProduct.discount} off)
 						</div>
 					</div>
 				</c:forEach>
