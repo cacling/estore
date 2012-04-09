@@ -120,8 +120,8 @@ public class Product implements Entity<Product>{
 		
 	}
 	
-	public void save() {
-		RepositoryFactory.getProductRepository().save(this);
+	public Product save() {
+		return RepositoryFactory.getProductRepository().save(this);
 	}
 
 	public static Product findByName(String name) {

@@ -1,5 +1,6 @@
 package com.google.code.estore.domain.model.customer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -28,6 +29,8 @@ public class Customer implements Entity<Customer>{
 	
 	private String name;
 	
+	private String password;
+	
 	@Column(unique = true)
 	private String email;
 	
@@ -42,14 +45,6 @@ public class Customer implements Entity<Customer>{
 	
 	@OneToOne
 	private Cart cart;
-	
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
 
 	public Cart getCart() {
 		return cart;
@@ -79,35 +74,75 @@ public class Customer implements Entity<Customer>{
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public List<Account> getAccounts() {
-		return accounts;
-	}
-
-	public void setAccounts(List<Account> accounts) {
-		this.accounts = accounts;
-	}
-
-	public List<Address> getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
-	}
-
 	public boolean sameIdentityAs(Customer other) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 	
+	public String getPassword() {
+		return password;
+	}
+
 	//Business Methods ================================================
-	public void save() {
-		RepositoryFactory.getCustomerRepository().save(this);
+	public List<Account> getAccounts() {
+		if(accounts == null){
+			accounts = new ArrayList<Account>();
+		}
+		return accounts;
+	}
+	
+	public List<Address> getAddresses() {
+		if(addresses == null){
+			addresses = new ArrayList<Address>();
+		}
+		return addresses;
+	}
+	
+	
+	public List<Order> getOrders() {
+		if(orders == null){
+			orders = new ArrayList<Order>();
+		}
+		return orders;
+	}
+	
+	public void addOrder(Order order) {
+		if(orders == null){
+			orders = new ArrayList<Order>();
+		}
+		this.orders.add(order);
+	}
+	
+	public void addAccount(Account account) {
+		if(accounts == null){
+			accounts = new ArrayList<Account>();
+		}
+		this.accounts.add(account);
+	}
+	
+	public void addAddress(Address address) {
+		if(addresses == null){
+			addresses = new ArrayList<Address>();
+		}
+		this.addresses.add(address);
+	}
+	
+	public void setEmail(String email) {
+		if(email == null){
+			email = name + "@gmail.com";
+		}
+		this.email = email;
+	}
+	
+	public void setPassword(String password) {
+		if(password == null){
+			password = name;
+		}
+		this.password = password;
+	}
+	
+	public Customer save() {
+		return RepositoryFactory.getCustomerRepository().save(this);
 	}
 
 	public static Customer findByName(String name) {

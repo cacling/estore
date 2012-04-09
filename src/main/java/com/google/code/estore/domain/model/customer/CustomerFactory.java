@@ -1,25 +1,80 @@
 package com.google.code.estore.domain.model.customer;
 
+import org.springframework.util.Assert;
+
+import com.google.code.estore.domain.model.shopping.Order;
 import com.google.code.estore.domain.shared.EntityFactory;
 
 public class CustomerFactory implements EntityFactory{
 	
 	private static final String DEFAULT_NAME = "";
 	
-	private static final String DEFAULT_EMAIL = "";
-	
-	public static Customer createCustomer(String name, String email) {
+	public static Customer createCustomer(String name) {
 		Customer c = getDefaultCustomer();
 		c.setName(name);
-		c.setEmail(email);
 		return c;
 	}
 	
 	private static Customer getDefaultCustomer() {
 		Customer c = new Customer();
 		c.setName(DEFAULT_NAME);
-		c.setEmail(DEFAULT_EMAIL);
 		return c;
+	}
+	
+	public static CustomerBuilder getCustomerBuilder(){
+		return  new CustomerFactory().new CustomerBuilder();
+	}
+	
+	public static CustomerBuilder getCustomerBuilder(Customer customer){
+		return  new CustomerFactory().new CustomerBuilder(customer);
+	}
+	
+	public class CustomerBuilder {
+		
+		private Customer customer = new Customer();
+		
+		public CustomerBuilder() {
+		}
+		
+		public CustomerBuilder(Customer customer) {
+			this.customer = customer;
+		}
+		
+		public CustomerBuilder withName(String name){
+			customer.setName(name);
+			return this;
+		}
+		
+		public CustomerBuilder withAddress(String city, String address){
+			Address addr = new Address();
+			addr.setCity(city);
+			addr.setAddress(address);
+			addr.setCustomer(customer);
+			customer.addAddress(addr);
+			return this;
+		}
+		
+		public CustomerBuilder withAccount(String cardNumber,String cardExpireDate) {
+			Account account = new Account();
+			account.setCardNumber(cardNumber);
+			account.setCardExpireDate(cardExpireDate);
+			account.setCustomer(customer);
+			customer.addAccount(account);
+			return this;
+		}
+		
+		public CustomerBuilder withOrder(Order order){
+			order.setCustomer(customer);
+			customer.addOrder(order);
+			return this;
+		}
+		
+		public Customer build() {
+			//validate
+			Assert.hasLength(customer.getName(),"customer name should not empty");
+			return customer;
+		}
+		
 	}
 	
 }

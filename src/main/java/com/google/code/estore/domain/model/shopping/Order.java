@@ -1,5 +1,6 @@
 package com.google.code.estore.domain.model.shopping;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -86,9 +87,6 @@ public class Order implements Entity<Order>{
 		this.totalMoney = totalMoney;
 	}
 	
-	public List<OrderItem> getOrderItems() {
-		return orderItems;
-	}
 
 	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
@@ -98,5 +96,21 @@ public class Order implements Entity<Order>{
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	//===================================================
+	public void addOrderItem(OrderItem orderItem){
+		if(orderItems==null){
+			orderItems = new ArrayList<OrderItem>();
+		}
+		orderItems.add(orderItem);
+	}
+	
+	public List<OrderItem> getOrderItems() {
+		if(orderItems==null){
+			orderItems = new ArrayList<OrderItem>();
+		}
+		return orderItems;
+	}
+	
 
 }

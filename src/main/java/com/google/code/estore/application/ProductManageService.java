@@ -15,7 +15,7 @@ public class ProductManageService {
 	
 	//bestPrice
 	
-	//bestselling 
+	//bestSelling 
 	
 	//new product
 	
@@ -27,7 +27,7 @@ public class ProductManageService {
 	}
 	
 	
-	public List<Product> getHotSalesProducts(int amount) {
+	public List<Product> getBestSelling4Products() {
 		return null;
 	}
 	
