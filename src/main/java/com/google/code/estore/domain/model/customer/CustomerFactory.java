@@ -12,6 +12,7 @@ public class CustomerFactory implements EntityFactory{
 	public static Customer createCustomer(String name) {
 		Customer c = getDefaultCustomer();
 		c.setName(name);
+		setPasswordEmailWithDefaultName(c,name);
 		return c;
 	}
 	
@@ -29,6 +30,15 @@ public class CustomerFactory implements EntityFactory{
 		return  new CustomerFactory().new CustomerBuilder(customer);
 	}
 	
+	private static void setPasswordEmailWithDefaultName(Customer customer, String name){
+		if(customer.getEmail() == null){
+			customer.setEmail(name + "@gmail.com");
+		}
+		if(customer.getPassword() == null){
+			customer.setPassword(name);
+		}
+	}
+	
 	public class CustomerBuilder {
 		
 		private Customer customer = new Customer();
@@ -42,6 +52,7 @@ public class CustomerFactory implements EntityFactory{
 		
 		public CustomerBuilder withName(String name){
 			customer.setName(name);
+			setPasswordEmailWithDefaultName(customer, name);
 			return this;
 		}
 		

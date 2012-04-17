@@ -12,7 +12,7 @@ public class DisplayItemDTO {
 	
 	private String image;
 	
-	private Double salePrice;
+	private String salePrice;
 	
 	private String discount;
 	
@@ -48,11 +48,11 @@ public class DisplayItemDTO {
 		this.image = image;
 	}
 
-	public Double getSalePrice() {
+	public String getSalePrice() {
 		return salePrice;
 	}
 
-	public void setSalePrice(Double salePrice) {
+	public void setSalePrice(String salePrice) {
 		this.salePrice = salePrice;
 	}
 

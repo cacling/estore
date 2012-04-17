@@ -19,4 +19,8 @@ public class CustomerRepository {
 		return customerRepositoryJpa.findByName(name);
 	}
 	
+	public Customer findByNameAndPassword(String name, String password){
+		return customerRepositoryJpa.findByNameAndPassword(name, password);
+	}
+	
 }

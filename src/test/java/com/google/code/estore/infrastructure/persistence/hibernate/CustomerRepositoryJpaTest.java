@@ -28,8 +28,7 @@ import com.google.code.estore.domain.shared.util.DateUtil;
 		"classpath:/applicationContext-test.xml" })
 @TransactionConfiguration
 @Transactional
-public class CustomerRepositoryJpaTest 
-		 {
+public class CustomerRepositoryJpaTest  {
 	
 	@Autowired
 	protected CustomerRepositoryJpa customerRepositoryJpa;
@@ -46,6 +45,18 @@ public class CustomerRepositoryJpaTest
 		Customer customer = customerRepositoryJpa.findByName("customer2");
 		Assert.assertNotNull(customer.getId());
 		Assert.assertEquals("customer2", customer.getName());
+	}
+	
+	@Test 
+	public void findByUsernameAndPassword() {
+		customerRepositoryJpa.save(CustomerFactory.createCustomer("c1"));
+		Customer customer = customerRepositoryJpa.findByNameAndPassword("c1", "c1");
+		Assert.assertNotNull(customer.getId());
+		Assert.assertEquals("c1", customer.getName());
+		
+		customer = customerRepositoryJpa.findByNameAndPassword("c1", "c2");
+		Assert.assertNull(customer);
+		
 	}
 	
 	@Test

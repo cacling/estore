@@ -1,5 +1,6 @@
 package com.google.code.estore.interfaces.facade.assembler;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,8 @@ public class DisplayAreaDTOAssembler {
 		displayItemDTO.setName(product.getName());
 		displayItemDTO.setDescription(product.getDescription());
 		displayItemDTO.setImage(product.getImage());
-		displayItemDTO.setSalePrice(product.getSalePrice());
+		//TODO handle price problem
+		displayItemDTO.setSalePrice(new DecimalFormat("#").format(product.getSalePrice()));
 		displayItemDTO.setDiscount(product.getDiscount());
 		return displayItemDTO;
 	}

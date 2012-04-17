@@ -2,21 +2,9 @@
 <html>
 <head>
 	<link rel="stylesheet" href="css/home.css" type="text/css" media="screen" charset="utf-8" />
-    <script type="text/javascript">
-
-        var cal
+	<script type="text/javascript" src="js/dojo.js"></script>
+    <script type="text/javascript" src="js/login.js">
         function pickDate() {
-        }
-
-        function datePicked(type,args,obj) {
-            var dates = args[0];
-            var date = dates[0];
-            var year = date[0], month = date[1], day = date[2];
-
-            var arrivalDeadline = document.getElementById("arrivalDeadline");
-            arrivalDeadline.value = month + "/" + day + "/" + year;
-
-            cal.dispose();
         }
     </script>
     
@@ -29,9 +17,12 @@
 	<div id="shortcut">
 		<div class="menu"> 
 			<div class="fr">
-			<div class="item"><a href="#">Login</a></div><div class="split">|</div>
-			<div class="item"><a href="#">My Orders</a></div><div class="split">|</div>
-			<div class="item"><a href="#">Help</a> </div><div class="split">|</div>
+				<div class="item" id="nologinDiv"><a href="#" onclick="showLoginWindow();">Login</a></div>
+				<div class="item" id="loginedDiv">Hi, <span id="sayHiTo">${username}</span><a href="#" onclick="doLogout()" style="margin-left: 10px">[Logout]</a></div>
+				<input type="hidden" id="loginedUsername" value="${username}">
+				<div class="split">|</div>
+				<div class="item"><a href="#">My Orders</a></div><div class="split">|</div>
+				<div class="item"><a href="#">Help</a> </div><div class="split">|</div>
 			</div>
 		</div>
 	</div>
@@ -78,7 +69,6 @@
 				</c:forEach>
 			</div>
 	    </div>
-	    
 	    
 	    <div id="bestPriceProducts">
 	    	<div class="title">
@@ -164,7 +154,25 @@
 		</div>
 	</div>
 	
-
+	<div id="loginDiv">
+		<form id="loginForm" action="login.json">
+			<div class="title">
+				<div class="fr"></div>
+				<div class="fr close" onclick="closeLoginWindow();"><img src="i/icon-close.gif" /></div>
+			</div>
+			<div class="item">
+				<div class="label">Username: </div><div class="fl"><input type="text" class="text" id="loginUsername" name="username" /></div>
+			</div>
+			<div class="item">
+				<div class="label">Password: </div><div class="fl"><input type="password" class="text password" id="loginPassword" name="password" /></div>
+				<div id="loginErrorDiv"><div class="label"></div><div id="loginErrorMsg" class="fl error-message"></div></div> 
+			</div>
+			<div class="item">
+				<div class="label">&nbsp;</div><div class="fl"><input type="button" id="loginBtn" class="btn" value="Login" onclick="doLogin()"></div>
+			</div>
+		</form>
+	</div>
 </body>
 </html>
 
+ 

@@ -84,6 +84,15 @@ public class Customer implements Entity<Customer>{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
 
 	//Business Methods ================================================
 	public List<Account> getAccounts() {
@@ -128,21 +137,7 @@ public class Customer implements Entity<Customer>{
 		}
 		this.addresses.add(address);
 	}
-	
-	public String getEmail() {
-		if(email == null){
-			email = name + "@gmail.com";
-		}
-		return email;
-	}
-	
-	public String getPassword() {
-		if(password == null){
-			password = name;
-		}
-		return password;
-	}
-	
+
 	public Customer save() {
 		return RepositoryFactory.getCustomerRepository().save(this);
 	}

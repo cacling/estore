@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
@@ -8,15 +8,5 @@
 	   		http://www.springframework.org/schema/context/spring-context-2.5.xsd
        	http://www.springframework.org/schema/tx
        		http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
-  <import resource="estore-application.xml"/>
-  <import resource="estore-application-shiro.xml"/>
-  <import resource="estore-domain.xml"/>
-  <import resource="estore-infrastructure-persistence.xml"/>
-  <import resource="estore-interfaces.xml"/>
-  
-  
-  	<!-- Spring provides the capability of automatically detecting 'stereotyped' classes
-		stereotype annotations: @Component, @Service and @Controller. @Component -->
-	<context:component-scan base-package="com.google.code.estore" />
-  
+
 </beans>
