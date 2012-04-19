@@ -2,7 +2,8 @@
 <html>
 <head>
 	<link rel="stylesheet" href="css/home.css" type="text/css" media="screen" charset="utf-8" />
-	<script type="text/javascript" src="js/dojo.js"></script>
+	<script type="text/javascript" src="js/dojo/dojo.js"></script>
+	<script type="text/javascript" src="js/cart.js"></script>
     <script type="text/javascript" src="js/login.js">
         function pickDate() {
         }
@@ -37,8 +38,8 @@
 		        </div>
 		    </div>
 		    <div id="checkout">
-		    	<div class="items">1 items</div>
-		    	<div class="total">$ 0.00</div>
+		    	<div class="items"><span id="itemAmount">0</span> items</div>
+		    	<div class="total">$ <span id="totalCost">0</span></div>
 		    	<div class="go"><a href="#"></a></div>
 		    </div>
 	    </div>
@@ -54,7 +55,7 @@
 		    	<c:forEach items="${bestSellingProducts}" var="bestSellingProduct">
 					<div class="item">
 						<div class="image">
-							<img alt="" src="i/sample/${bestSellingProduct.image}" width="130px" height="130px">
+							<img id="bestSellingProduct-${bestSellingProduct.prodId}"  alt="" src="i/sample/${bestSellingProduct.image}" width="130px" height="130px">
 						</div>
 						<div class="itemname">
 							${bestSellingProduct.name} 
@@ -63,7 +64,7 @@
 							$ ${bestSellingProduct.salePrice} (${bestSellingProduct.discount} off)
 						</div>
 						<div class="itemToCart">
-							<img alt="" src="i/addToCart.jpg">
+							<img alt="" class="addToCart" src="i/addToCart.jpg" onclick="addToCart('bestSellingProduct',${bestSellingProduct.prodId},${bestSellingProduct.salePrice})">
 						</div>
 					</div>
 				</c:forEach>
@@ -78,7 +79,7 @@
 		    	<c:forEach items="${bestPriceProducts}" var="bestPriceProduct">
 					<div class="item">
 						<div class="image">
-							<img alt="" src="i/sample/${bestPriceProduct.image}" width="130px" height="130px">
+							<img id="bestPriceProduct-${bestPriceProduct.prodId}" alt="" src="i/sample/${bestPriceProduct.image}" width="130px" height="130px">
 						</div>
 						<div class="itemname">
 							${bestPriceProduct.name} 
@@ -87,7 +88,7 @@
 							$ ${bestPriceProduct.salePrice} (${bestPriceProduct.discount} off)
 						</div>
 						<div class="itemToCart">
-							<img alt="" src="i/addToCart.jpg">
+							<img alt="" class="addToCart" src="i/addToCart.jpg" onclick="addToCart('bestPriceProduct',${bestPriceProduct.prodId},${bestPriceProduct.salePrice})">
 						</div>
 					</div>
 				</c:forEach>
@@ -102,7 +103,7 @@
 		    	<c:forEach items="${newProducts}" var="newProduct">
 					<div class="item">
 						<div class="image">
-							<img alt="" src="i/sample/${newProduct.image}" width="130px" height="130px">
+							<img alt="" id="newProduct-${newProduct.prodId}" src="i/sample/${newProduct.image}" width="130px" height="130px">
 						</div>
 						<div class="itemname">
 							${newProduct.name} 
@@ -111,7 +112,7 @@
 							$ ${newProduct.salePrice} (${newProduct.discount} off)
 						</div>
 						<div class="itemToCart">
-							<img alt="" src="i/addToCart.jpg">
+							<img alt="" class="addToCart" src="i/addToCart.jpg" onclick="addToCart('newProduct',${newProduct.prodId},${newProduct.salePrice})">
 						</div>
 					</div>
 				</c:forEach>

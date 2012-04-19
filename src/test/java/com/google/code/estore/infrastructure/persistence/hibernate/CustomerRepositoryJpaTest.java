@@ -21,7 +21,7 @@ import com.google.code.estore.domain.model.product.Product;
 import com.google.code.estore.domain.model.product.ProductFactory;
 import com.google.code.estore.domain.model.shopping.Order;
 import com.google.code.estore.domain.model.shopping.OrderFactory;
-import com.google.code.estore.domain.shared.util.DateUtil;
+import com.google.code.estore.infrastructure.util.DateUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:/estore-infrastructure-persistence.xml",

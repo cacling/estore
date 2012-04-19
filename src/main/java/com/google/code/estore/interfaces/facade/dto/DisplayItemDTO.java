@@ -3,8 +3,7 @@ package com.google.code.estore.interfaces.facade.dto;
 
 public class DisplayItemDTO {
 	
-	
-	private Long id;
+	private Long prodId;
 
 	private String name;
 
@@ -24,12 +23,12 @@ public class DisplayItemDTO {
 		this.name = name;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getProdId() {
+		return prodId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setProdId(Long prodId) {
+		this.prodId = prodId;
 	}
 
 	public String getDescription() {

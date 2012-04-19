@@ -29,6 +29,7 @@ public class Customer implements Entity<Customer>{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(unique = true)
 	private String name;
 	
 	private String password;
@@ -45,7 +46,7 @@ public class Customer implements Entity<Customer>{
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy ="customer") 
 	private List<Order> orders;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Cart cart;
 
 	public Cart getCart() {

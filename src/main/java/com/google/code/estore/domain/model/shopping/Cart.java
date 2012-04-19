@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.google.code.estore.domain.shared.Entity;
+import com.google.code.estore.domain.shared.RepositoryFactory;
 
 @javax.persistence.Entity
 @Table(name="CARTS")
@@ -21,7 +22,7 @@ public class Cart implements Entity<Cart>{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy ="cart") 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy ="cart") 
 	private List<CartItem> cartItems;
 	
 	public Long getId() {
@@ -42,6 +43,7 @@ public class Cart implements Entity<Cart>{
 		if(cartItems == null){
 			cartItems = new ArrayList<CartItem>();
 		}
+		cartItem.setCart(this);
 		cartItems.add(cartItem);
 	}
 	
@@ -50,5 +52,9 @@ public class Cart implements Entity<Cart>{
 			cartItems = new ArrayList<CartItem>();
 		}
 		return cartItems;
+	}
+	
+	public Cart save() {
+		return RepositoryFactory.getCartRepository().save(this);
 	}
 }

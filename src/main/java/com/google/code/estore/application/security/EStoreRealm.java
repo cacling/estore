@@ -21,7 +21,6 @@ public class EStoreRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection prin) {
 		// TODO Auto-generated method stub
-		System.out.println("doGetAuthorizationInfo");
 		String username = prin.asList().get(0).toString();
 
 		if (username.equals("wei")) {

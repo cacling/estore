@@ -11,7 +11,7 @@ public class DisplayAreaDTOAssembler {
 	
 	public static DisplayItemDTO toDisplayItemDTO(Product product){
 		DisplayItemDTO displayItemDTO = new DisplayItemDTO();
-		displayItemDTO.setId(product.getId());
+		displayItemDTO.setProdId(product.getId());
 		displayItemDTO.setName(product.getName());
 		displayItemDTO.setDescription(product.getDescription());
 		displayItemDTO.setImage(product.getImage());

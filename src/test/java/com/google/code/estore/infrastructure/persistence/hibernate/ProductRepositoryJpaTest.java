@@ -34,18 +34,18 @@ public class ProductRepositoryJpaTest {
 	
 	@Test
 	public void findByName() {
-		productRepository.save(ProductFactory.createProduct("prod1",1.0));
-		productRepository.save(ProductFactory.createProduct("prod2",1.0));
-		productRepository.save(ProductFactory.createProduct("prod3",1.0));
+		ProductFactory.createProduct("prod1",1.0).save();
+		ProductFactory.createProduct("prod2",1.0).save();
+		ProductFactory.createProduct("prod3",1.0).save();
 		Product product = productRepository.findByName("prod2");
 		Assert.assertNotNull(product.getId());
 	}
 	
 	@Test
 	public void findTopXLastCreatedProducts() {
-		productRepository.save(ProductFactory.createProduct("prod1","","",1,1,"20120101"));
-		productRepository.save(ProductFactory.createProduct("prod2","","",1,1,"20120102"));
-		productRepository.save(ProductFactory.createProduct("prod3","","",1,1,"20120103"));
+		ProductFactory.getProductBuilder().withName("prod1").withUnitPrice(1).withCreatedDate("20120101").build().save();
+		ProductFactory.getProductBuilder().withName("prod2").withUnitPrice(1).withCreatedDate("20120102").build().save();
+		ProductFactory.getProductBuilder().withName("prod3").withUnitPrice(1).withCreatedDate("20120103").build().save();
 		//get top 2
 		List<Product> products = productRepository.findTopXLastCreatedProducts(2);
 		Assert.assertEquals(2,products.size());
@@ -80,9 +80,10 @@ public class ProductRepositoryJpaTest {
 	
 	@Test
 	public void findTopXDiscountMostProducts(){
-		ProductFactory.createProduct("p1","","",2000,1000,"20120101").save();
-		ProductFactory.createProduct("p2","","",2000,2000,"20120101").save();
-		ProductFactory.createProduct("p3","","",5000,1000,"20120101").save();
+		ProductFactory.getProductBuilder().withName("p1").withUnitPrice(2000).withSalePrice(1000).withCreatedDate("20120101").build().save();
+		ProductFactory.getProductBuilder().withName("p2").withUnitPrice(2000).withSalePrice(2000).withCreatedDate("20120102").build().save();
+		ProductFactory.getProductBuilder().withName("p3").withUnitPrice(5000).withSalePrice(1000).withCreatedDate("20120103").build().save();
+
 		
 		List<Product> products = productRepository.findTopXDiscountMostProducts(2);
 		Assert.assertEquals(2,products.size());

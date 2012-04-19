@@ -62,6 +62,7 @@ function doLogin() {
 				closeLoginWindow();
 				dojo.byId('sayHiTo').innerHTML = response.username;
 				showUsername(true);
+				setCartItemsToCookie(dojo.fromJson(response.cartItems));
 			}else{
 				dojo.addClass(dojo.byId('loginPassword'), 'error');
 				dojo.byId('loginErrorDiv').style.display = 'block';
@@ -87,6 +88,7 @@ function doLogout() {
 	    	if(response.logoutStatus){
 	    		alert('Logout successfully');
 	    		showUsername(false);
+	    		cleanupCartItems();
 	    	}
 	    },
 	    error: function(error){

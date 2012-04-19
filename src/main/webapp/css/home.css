@@ -371,5 +371,9 @@ a:hover {
 .display {
 	display: block;
 }
+
+.addToCart {
+	cursor: pointer;
+}
 	
 	

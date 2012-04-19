@@ -123,6 +123,10 @@ public class Product implements Entity<Product>{
 	public Product save() {
 		return RepositoryFactory.getProductRepository().save(this);
 	}
+	
+	public static Product findById(Long id) {
+		return RepositoryFactory.getProductRepository().findById(id);
+	}
 
 	public static Product findByName(String name) {
 		return RepositoryFactory.getProductRepository().findByName(name);

@@ -2,6 +2,9 @@ package com.google.code.estore.domain.model.customer;
 
 import org.springframework.util.Assert;
 
+import com.google.code.estore.domain.model.product.Product;
+import com.google.code.estore.domain.model.shopping.Cart;
+import com.google.code.estore.domain.model.shopping.CartItem;
 import com.google.code.estore.domain.model.shopping.Order;
 import com.google.code.estore.domain.shared.EntityFactory;
 
@@ -19,6 +22,7 @@ public class CustomerFactory implements EntityFactory{
 	private static Customer getDefaultCustomer() {
 		Customer c = new Customer();
 		c.setName(DEFAULT_NAME);
+		c.setCart(new Cart());
 		return c;
 	}
 	
@@ -44,6 +48,7 @@ public class CustomerFactory implements EntityFactory{
 		private Customer customer = new Customer();
 		
 		public CustomerBuilder() {
+			customer.setCart(new Cart());  
 		}
 		
 		public CustomerBuilder(Customer customer) {
@@ -77,6 +82,15 @@ public class CustomerFactory implements EntityFactory{
 		public CustomerBuilder withOrder(Order order){
 			order.setCustomer(customer);
 			customer.addOrder(order);
+			return this;
+		}
+		
+		public CustomerBuilder withCartItem(Product product, long quantity){
+			CartItem cartItem = new CartItem();
+			cartItem.setProduct(product);
+			cartItem.setQuantity(quantity);
+			cartItem.setCart(customer.getCart());
+			customer.getCart().addCartItem(cartItem);
 			return this;
 		}
 		

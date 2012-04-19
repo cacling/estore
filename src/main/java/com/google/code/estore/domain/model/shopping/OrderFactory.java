@@ -4,10 +4,9 @@ import java.util.Date;
 
 import org.springframework.util.Assert;
 
-import com.google.code.estore.domain.model.customer.Customer;
 import com.google.code.estore.domain.model.product.Product;
 import com.google.code.estore.domain.shared.EntityFactory;
-import com.google.code.estore.domain.shared.util.DateUtil;
+import com.google.code.estore.infrastructure.util.DateUtil;
 
 public class OrderFactory implements EntityFactory {
 

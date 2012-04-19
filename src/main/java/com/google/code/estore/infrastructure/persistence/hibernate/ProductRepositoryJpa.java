@@ -8,4 +8,6 @@ public interface ProductRepositoryJpa extends CrudRepository<Product, Long>, Pro
 	
 	public Product findByName(String name);
 	
+	public Product findById(Long id);
+	
 }

@@ -19,8 +19,11 @@ public class ProductRepository  {
 	}
 
 	public Product findByName(String name) {
-		
 		return productJpaRepository.findByName(name);
+	}
+	
+	public Product findById(Long id) {
+		return productJpaRepository.findById(id);
 	}
 	
 	public Iterable<Product> findAll() {

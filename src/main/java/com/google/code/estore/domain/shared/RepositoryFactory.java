@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.google.code.estore.domain.model.customer.CustomerRepository;
 import com.google.code.estore.domain.model.product.ProductRepository;
+import com.google.code.estore.domain.model.shopping.CartRepository;
 
 @Component
 public class RepositoryFactory {
@@ -12,6 +13,8 @@ public class RepositoryFactory {
 	private static ProductRepository productRepository;
 	
 	private static CustomerRepository customerRepository;
+	
+	private static CartRepository cartRepository;
 
 	public static ProductRepository getProductRepository() {
 		return productRepository;
@@ -30,6 +33,16 @@ public class RepositoryFactory {
 	public void setCustomerRepository(CustomerRepository customerRepository) {
 		RepositoryFactory.customerRepository = customerRepository;
 	}
+
+	public static CartRepository getCartRepository() {
+		return cartRepository;
+	}
+
+	@Autowired
+	public void setCartRepository(CartRepository cartRepository) {
+		RepositoryFactory.cartRepository = cartRepository;
+	}
+	
 	
 	
 	

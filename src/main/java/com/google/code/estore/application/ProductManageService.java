@@ -13,27 +13,27 @@ import com.google.code.estore.domain.shared.RepositoryFactory;
 public class ProductManageService {
 	
 	public List<Product> get4BestSellingProducts() {
-		int amount = 4;
-		return RepositoryFactory.getProductRepository().findTopXOrderedProducts(amount);
+		int quantity = 4;
+		return RepositoryFactory.getProductRepository().findTopXOrderedProducts(quantity);
 	}
 	
 	public List<Product> get4LatestProducts() {
-		int amount = 4;
-		return RepositoryFactory.getProductRepository().findTopXLastCreatedProducts(amount);
+		int quantity = 4;
+		return RepositoryFactory.getProductRepository().findTopXLastCreatedProducts(quantity);
 	}
 	
-	public List<Product> getCustomerFavourProducts(int amount, Customer customer) {
+	public List<Product> getCustomerFavourProducts(int quantity, Customer customer) {
 		return null;
 	}
 	
 	public List<Product> get4BestPriceProducts() {
-		int amount = 4;
-		return RepositoryFactory.getProductRepository().findTopXDiscountMostProducts(amount);
+		int quantity = 4;
+		return RepositoryFactory.getProductRepository().findTopXDiscountMostProducts(quantity);
 	}
 	
 	public List<Product> get10RecommendProducts() {
-		int amount = 10;
-		return RepositoryFactory.getProductRepository().findTopXRecommendProducts(amount);
+		int quantity = 10;
+		return RepositoryFactory.getProductRepository().findTopXRecommendProducts(quantity);
 	}
 	
 }
