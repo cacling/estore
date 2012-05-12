@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.google.code.estore.domain.model.product.Product;
 import com.google.code.estore.domain.shared.RepositoryFactory;
 import com.google.code.estore.interfaces.portal.DisplayProductItemDTO;
 import com.google.code.estore.interfaces.portal.DisplayProductItemDTOAssembler;

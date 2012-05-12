@@ -32,10 +32,12 @@ public class ProductRepositoryJpaImpl implements ProductRepositoryJpaCustom{
 	}
 
 	public List<Product> findTopXOrderedProducts(int x) {
-		Query query = em.createQuery("select p,sum(oi.quantity) from Order o, OrderItem oi, Product p where oi.product=p.id and oi.order=o.id group by p order by sum(oi.quantity) desc");
+		Query query = em.createQuery("select p.id from Order o, OrderItem oi, Product p where oi.product=p.id and oi.order=o.id group by p.id order by sum(oi.quantity) desc");
 		query.setMaxResults(x);
-		List results = query.getResultList();
-		return JpaResultUtil.getExtractedResults(results, 0);
+		List ids = query.getResultList();
+		query = em.createQuery("select p from  Product p where p.id in (:ids)");
+		query.setParameter("ids",ids);
+		return query.getResultList();
 	}
 
 	public List<Product> findTopXDiscountMostProducts(int x) {

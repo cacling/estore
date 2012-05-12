@@ -40,6 +40,12 @@
 					<stopKey>foo</stopKey>
 					<stopPort>9999</stopPort>
 					<webDefaultXml>src/main/webapp/WEB-INF/webdefault.xml</webDefaultXml>
+					<connectors>
+		            <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+		              <port>9090</port>
+		              <maxIdleTime>60000</maxIdleTime>
+		            </connector>
+		          </connectors>
 				</configuration>
 				<executions>
 					<execution>
@@ -182,6 +188,11 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.19</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>10.2.0.4.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.solr</groupId>

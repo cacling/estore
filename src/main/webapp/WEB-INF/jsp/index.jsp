@@ -5,13 +5,8 @@
 	<script type="text/javascript" src="js/dojo/dojo.js"></script>
 	<script type="text/javascript" src="js/cart.js"></script>
     <script type="text/javascript" src="js/login.js">
-        function pickDate() {
-        }
     </script>
-    
     <style type="text/css">
-
-	
     </style>
 </head>
 <body>

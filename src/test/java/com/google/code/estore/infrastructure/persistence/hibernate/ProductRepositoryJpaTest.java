@@ -74,8 +74,8 @@ public class ProductRepositoryJpaTest {
 		
 		List<Product> products = productRepository.findTopXOrderedProducts(2);
 		Assert.assertEquals(2,products.size());
-		Assert.assertEquals("p3",products.get(0).getName());
-		Assert.assertEquals("p1",products.get(1).getName());
+		Assert.assertEquals("p1",products.get(0).getName());
+		Assert.assertEquals("p3",products.get(1).getName());
 	}
 	
 	@Test
