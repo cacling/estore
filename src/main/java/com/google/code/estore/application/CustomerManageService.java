@@ -21,6 +21,11 @@ public class CustomerManageService {
 		return Customer.findByName(loginedUsername);
 	}
 	
+	public boolean isLogined() {
+		Subject currentUser = SecurityUtils.getSubject(); 
+        return currentUser.isAuthenticated(); 
+	}
+	
 	public boolean login(String username, String password) {
 		boolean logined = true;
 		Subject currentUser = SecurityUtils.getSubject(); 

@@ -1,12 +1,16 @@
 
 dojo.addOnLoad( function() {  
-	showUsername(dojo.byId('loginedUsername').value);  
-	onEnterTeigerEvent('loginUsername',function(){dojo.byId('loginPassword').focus();});
-	onEnterTeigerEvent('loginPassword',function(){dojo.byId('loginBtn').click();});
+	showUsername(isCustomerLogined());  
+	_onEnterTeigerEvent('loginUsername',function(){dojo.byId('loginPassword').focus();});
+	_onEnterTeigerEvent('loginPassword',function(){dojo.byId('loginBtn').click();});
 	
 });  
 
-function onEnterTeigerEvent(id,func){
+function isCustomerLogined() {
+	return !(dojo.byId('loginedUsername').value == '');
+}
+
+function _onEnterTeigerEvent(id,func){
 	 dojo.connect(dojo.byId(id),'onkeydown',null, function(event){  
 	        if (event.keyCode==13) {  
 	        	func.call();  
@@ -60,9 +64,12 @@ function doLogin() {
 		load: function(response){
 			if(response.loginStatus){
 				closeLoginWindow();
-				dojo.byId('sayHiTo').innerHTML = response.username;
 				showUsername(true);
-				setCartItemsToCookie(dojo.fromJson(response.cartItems));
+				var cartItems = dojo.fromJson(response.cartItems);
+				setCartItemsToCookie(cartItems);
+				updateCartStatistic(cartItems);
+				dojo.byId('sayHiTo').innerHTML = response.username;
+				dojo.byId('loginedUsername').value = response.username;
 			}else{
 				dojo.addClass(dojo.byId('loginPassword'), 'error');
 				dojo.byId('loginErrorDiv').style.display = 'block';
@@ -88,7 +95,9 @@ function doLogout() {
 	    	if(response.logoutStatus){
 	    		alert('Logout successfully');
 	    		showUsername(false);
-	    		cleanupCartItems();
+	    		cleanupCartItemsFromCookie();
+	    		updateCartStatistic(null);
+	    		dojo.byId('loginedUsername').value = '';
 	    	}
 	    },
 	    error: function(error){

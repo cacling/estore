@@ -4,36 +4,32 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.google.code.estore.domain.model.customer.Customer;
 import com.google.code.estore.domain.model.product.Product;
 import com.google.code.estore.domain.shared.RepositoryFactory;
-
+import com.google.code.estore.interfaces.portal.DisplayProductItemDTO;
+import com.google.code.estore.interfaces.portal.DisplayProductItemDTOAssembler;
 
 @Component
 public class ProductManageService {
 	
-	public List<Product> get4BestSellingProducts() {
+	public List<DisplayProductItemDTO> get4BestSellingProducts() {
 		int quantity = 4;
-		return RepositoryFactory.getProductRepository().findTopXOrderedProducts(quantity);
+		return DisplayProductItemDTOAssembler.toDTOs(RepositoryFactory.getProductRepository().findTopXOrderedProducts(quantity));
 	}
 	
-	public List<Product> get4LatestProducts() {
+	public List<DisplayProductItemDTO> get4LatestProducts() {
 		int quantity = 4;
-		return RepositoryFactory.getProductRepository().findTopXLastCreatedProducts(quantity);
+		return DisplayProductItemDTOAssembler.toDTOs(RepositoryFactory.getProductRepository().findTopXLastCreatedProducts(quantity));
 	}
 	
-	public List<Product> getCustomerFavourProducts(int quantity, Customer customer) {
-		return null;
-	}
-	
-	public List<Product> get4BestPriceProducts() {
+	public List<DisplayProductItemDTO> get4BestPriceProducts() {
 		int quantity = 4;
-		return RepositoryFactory.getProductRepository().findTopXDiscountMostProducts(quantity);
+		return DisplayProductItemDTOAssembler.toDTOs(RepositoryFactory.getProductRepository().findTopXDiscountMostProducts(quantity));
 	}
 	
-	public List<Product> get10RecommendProducts() {
+	public List<DisplayProductItemDTO> get10RecommendProducts() {
 		int quantity = 10;
-		return RepositoryFactory.getProductRepository().findTopXRecommendProducts(quantity);
+		return DisplayProductItemDTOAssembler.toDTOs(RepositoryFactory.getProductRepository().findTopXRecommendProducts(quantity));
 	}
 	
 }

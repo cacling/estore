@@ -63,5 +63,11 @@ public class CartItem  implements Entity<CartItem> {
 	}
 	
 	
+	//======================================================
+	
+	public void addQuantity(long extraQuantity) {
+		quantity = quantity + extraQuantity;
+	}  
+	
 	
 }
